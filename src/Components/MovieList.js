@@ -9,7 +9,8 @@ export class MovieList extends Component {
     this.state = {
       hover: "",
       movies: [],
-      parr: [1]
+      parr: [1],
+      currPage :1,
     };
   }
 
