@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 
+import {movies} from '../movieData'
+
 export class Banner extends Component {
   render() {
-    return (
-        <div className="card banner-card" >
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAfYyU7SXiFRiNpIqLWcWhySk38OvvrEIGew&usqp=CAU" className = "banner-img" alt=''/>
+    let moviesElem = movies.results[Math.floor(Math.random()*10)]
+    let backDrop = moviesElem.backdrop_path
+    let title = moviesElem.title
+    let description = moviesElem.overview
 
-          <h5 className="card-title banner-title">The Dark Knight</h5>
-          <p className="card-text banner-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-         
-      </div>
+    return (
+       <div className="card banner-card">
+       <img src={`https://image.tmdb.org/t/p/original${backDrop}`} className="card-img-top banner-img" alt="..."/>
+       
+         <h5 className="card-title banner-title">{title}</h5>
+         <p className="card-text banner-text">{description}</p>
+
+       
+     </div>
     )
   }
 }

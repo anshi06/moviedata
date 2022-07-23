@@ -77,7 +77,6 @@ export class MovieList extends Component {
         currPage : value 
       } , this.changePage)
     }
-        
   }
 
 
@@ -87,7 +86,7 @@ export class MovieList extends Component {
 
   render() {
 
-    console.log('render second')
+    //console.log('render second')
     return (
       <>
         <div>
