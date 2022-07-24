@@ -1,84 +1,88 @@
 import React, { Component } from "react";
 
-
-
-import axios from 'axios'
-
-
+import axios from "axios";
 
 export class MovieList extends Component {
   constructor() {
     super();
 
-    console.log('Constructor first')
+    console.log("Constructor first");
 
     this.state = {
       hover: "",
       movies: [],
-      parr : [1],
-      currPage : 1,
+      parr: [1],
+      currPage: 1,
+
       favourites: [],
     };
   }
 
   // Component did mount will only work once in the lifecyle of a component
-  async componentDidMount(){
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705&language=en-US&page=${this.state.currPage}`)
-    const movieDataApi = res.data.results
+  async componentDidMount() {
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705a&language=en-US&page=${this.state.currPage}`
+    );
+    const movieDataApi = res.data.results;
 
     this.setState({
-      movies : [...movieDataApi]
-    })
+      movies: [...movieDataApi],
+    });
 
-    console.log('Mounting third')
+    console.log("Mounting third");
   }
 
- // we created another method to update the state
-  changePage = async()=>{
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705&language=en-US&page=${this.state.currPage}`)
-    const movieDataApi = res.data.results
+  // we created another method to update the state
+  changePage = async () => {
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705a&language=en-US&page=${this.state.currPage}`
+    );
+    const movieDataApi = res.data.results;
 
     this.setState({
-      movies : [...movieDataApi]
-    })
+      movies: [...movieDataApi],
+    });
+  };
 
-  }
+  handleNext = () => {
+    let tempArr = [];
 
-
-  handleNext =()=>{
-    let tempArr = []
-
-    for(let i=1 ; i<=this.state.parr.length+1 ; i++){
-      tempArr.push(i)
+    for (let i = 1; i <= this.state.parr.length + 1; i++) {
+      tempArr.push(i);
     }
 
+    console.log(tempArr);
 
-    console.log(tempArr)
+    this.setState(
+      {
+        parr: [...tempArr],
+        currPage: this.state.currPage + 1,
+      },
+      this.changePage
+    );
+  };
 
-    this.setState({
-            parr:[...tempArr],
-            currPage : this.state.currPage+1
-    } , this.changePage)
-  }
-
-
-  handlePrevious =()=>{
-    if(this.state.currPage!=1){
-      this.setState({
-        currPage : this.state.currPage-1
-  } , this.changePage)
+  handlePrevious = () => {
+    if (this.state.currPage != 1) {
+      this.setState(
+        {
+          currPage: this.state.currPage - 1,
+        },
+        this.changePage
+      );
     }
+  };
 
-  }
-
-
-  handlePageClick =(value)=>{
-    if(value!= this.state.currPage){
-      this.setState({
-        currPage : value 
-      } , this.changePage)
+  handlePageClick = (value) => {
+    if (value != this.state.currPage) {
+      this.setState(
+        {
+          currPage: value,
+        },
+        this.changePage
+      );
     }
-  }
+  };
 
   handleFavourites = (movieObj) => {
     let data = JSON.parse(localStorage.getItem("movies-test") || "[]");
@@ -106,14 +110,8 @@ export class MovieList extends Component {
     });
   };
 
-
-
-  
-
-
   render() {
-
-    //console.log('render second')
+    console.log("render second");
     return (
       <>
         <div>
@@ -139,12 +137,12 @@ export class MovieList extends Component {
               <h5 class="card-title movie-title">{movieElem.original_title}</h5>
 
               {this.state.hover == movieElem.id && (
-                 <a
-                 class="btn btn-primary movies-button text-center"
-                 onClick={() => this.handleFavourites(movieElem)}
-               >
-                {this.state.favourites.includes(movieElem.id)? 'Remove' : 'Add To favourites'}
-               </a>
+                <a
+                  class="btn btn-primary movies-button text-center"
+                  onClick={() => this.handleFavourites(movieElem)}
+                >
+                 {this.state.favourites.includes(movieElem.id)? 'Remove' : 'Add To favourites'}
+                </a>
               )}
             </div>
           ))}
@@ -154,13 +152,20 @@ export class MovieList extends Component {
           <nav aria-label="...">
             <ul class="pagination">
               <li class="page-item ">
-                <a class="page-link" onClick={this.handlePrevious}>Previous</a>
+                <a class="page-link" onClick={this.handlePrevious}>
+                  Previous
+                </a>
               </li>
 
-              {this.state.parr.map((value)=>(
-               <li class="page-item">
-               <a class="page-link" onClick={()=>this.handlePageClick(value)}>{value}</a>
-             </li>
+              {this.state.parr.map((value) => (
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    onClick={() => this.handlePageClick(value)}
+                  >
+                    {value}
+                  </a>
+                </li>
               ))}
               <li class="page-item">
                 <a class="page-link" onClick={this.handleNext}>

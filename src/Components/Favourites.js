@@ -93,7 +93,7 @@ export class Favourites extends Component {
 
 
    else{
-       filterArr = this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
+       filterArr = this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]===this.state.currGenre)
    } 
 
   
@@ -103,7 +103,7 @@ export class Favourites extends Component {
         <div className="row">
           <div className="col-3">
             <ul class="list-group genre-selector">
-              {this.state.genres.map((genre) => this.state.currGenre==genre?
+              {this.state.genres.map((genre) => this.state.currGenre===genre?
               (
                 <li
                   style={{
