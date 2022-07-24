@@ -21,7 +21,7 @@ export class MovieList extends Component {
   // Component did mount will only work once in the lifecyle of a component
   async componentDidMount() {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705a&language=en-US&page=${this.state.currPage}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705&language=en-US&page=${this.state.currPage}`
     );
     const movieDataApi = res.data.results;
 
@@ -35,7 +35,7 @@ export class MovieList extends Component {
   // we created another method to update the state
   changePage = async () => {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705a&language=en-US&page=${this.state.currPage}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=2aaaf63840c33015eba1342b01218705&language=en-US&page=${this.state.currPage}`
     );
     const movieDataApi = res.data.results;
 

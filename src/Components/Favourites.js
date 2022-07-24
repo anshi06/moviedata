@@ -9,7 +9,7 @@ export class Favourites extends Component {
     this.state = {
       genres: [],
       movies: [],
-      currGenre : 'All Genres'
+      currGenre : 'All Generes'
     };
   }
 
@@ -62,7 +62,7 @@ export class Favourites extends Component {
       
   }
 
-  render() {
+    render() {
     let genreids = {
       28: "Action",
       12: "Adventure",
@@ -93,7 +93,7 @@ export class Favourites extends Component {
 
 
    else{
-       filterArr = this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]===this.state.currGenre)
+       filterArr = this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
    } 
 
   
@@ -103,7 +103,7 @@ export class Favourites extends Component {
         <div className="row">
           <div className="col-3">
             <ul class="list-group genre-selector">
-              {this.state.genres.map((genre) => this.state.currGenre===genre?
+            {this.state.genres.map((genre) => this.state.currGenre===genre?
               (
                 <li
                   style={{
@@ -123,7 +123,6 @@ export class Favourites extends Component {
                        fontWeight: "bold",
                      }}
                      className="list-group-item"
-
                      onClick={()=>this.handleGenreChange(genre)}
                    >
                      {genre}

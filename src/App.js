@@ -1,30 +1,31 @@
-import './App.css';
-import Banner from "./Components/Banner";
-import Navbar from "./Components/Navbar";
-import MovieList from "./Components/MovieList";
-import Favourites from "./Components/Favourites";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import "./App.css";
 
+import Banner from "./Components/Banner";
+import Favourites from "./Components/Favourites";
+import MovieList from "./Components/MovieList";
+import Navbar from "./Components/Navbar";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
 
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <Banner />
-            <MovieList />
-          </>
-        }
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Banner />
+              <MovieList />
+            </>
+          }
+        />
 
-      <Route path="/favourites" element={<Favourites />} />
-    </Routes>
-  </BrowserRouter>
+        <Route path="/favourites" element={<Favourites />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
