@@ -14,7 +14,7 @@ function App() {
 
       <Routes>
         <Route
-          path="/movies"
+          path="/"
           element={
             <>
               <Banner />
