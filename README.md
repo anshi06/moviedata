@@ -4,4 +4,4 @@ User can apply filter, mark favorite movies.
 For UI creation HTML5 and CSS3 and material-UI are used. 
 API is used to get the data of latest released movies.
 
-https://anshi06.github.io/moviedata/(tap here to preview this project)
+https://anshi06.github.io/moviedata/     (tap here to preview this project)
